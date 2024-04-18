@@ -42,7 +42,18 @@ public class TeacherGUI{
        paragraph.setFont(fpara);//Settiing the  font for paragraph
        paragraph.setBounds(41,282,564,73);
        select.add(paragraph);//Addding paragraph to panel
-       
+
+       Color customColor = new Color(0xD9, 0xD9, 0xD9);//Declaring a custom color with rgb for all the buttons
+       Lecturer.setBackground(customColor);//Setting the background color of all button
+
+       //Creating the font of buttons for selection part in JPanel
+       Font fbutton = new Font("inter", Font.PLAIN, 20);//Declaring the font for buttons
+        Lecturer.setFont(fbutton);//Setting the font of buttons
+        Tutor.setFont(fbutton);//Setting the font of buttons
+        Quit.setFont(fbutton);//Setting the font of buttons
+
+
+
        //Creating Buttons needed in JPanel options
        Lecturer = new JButton("Lecturer");
        Lecturer.setBounds(565,188,219,72);//Setting the size of Lecturer
