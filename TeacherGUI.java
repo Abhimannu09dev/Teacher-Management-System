@@ -11,10 +11,11 @@ import java.awt.event.ActionListener;
 
 public class TeacherGUI implements ActionListener{
     JFrame TeacherGUI;
-    JLabel background,heading,Logo_,paragraph,try_,teacherID,teacherName,department,WorkingType;
-    JPanel select,p_Lecturer;
+    JLabel background,heading,Logo_,paragraph,try_,teacherID,teacherName,department,WorkingType,WorkingHour,employmentstatus,gradedScore;
+    JTextField forteacherID,forteacherName,fordepartment,forWorkingType,forWorkingHour,foremploymentstatus,forgradedScore;
+    JPanel select,p_Lecturer,t_panel;
     ImageIcon back,Logo,try_1;
-    JButton Lecturer,Tutor,Quit;
+    JButton Lecturer,Tutor,Quit,Add,GradeAssignment,Display,Clear,Previous,Back;
     
     //Creating constructor
     public TeacherGUI(){
@@ -96,15 +97,15 @@ public class TeacherGUI implements ActionListener{
         p_Lecturer.setBounds(236,190,825,571);
         p_Lecturer.setLayout(null);//Setting the layout of panel lecturer
         TeacherGUI.add(p_Lecturer);//Adding JPanel to JFrame
+        p_Lecturer.setVisible(false);//
         
         //Creating JLabel for Lecturer
         teacherID = new JLabel("Teacher ID:");
-        teacherID.setBounds(23,26,149,33);
+        teacherID.setBounds(23,45,149,33);
         
         //Creacting JLabel for Lecturer
         teacherName = new JLabel("Teacher name:");
         teacherName.setBounds(23,91,163,50);
-        
         
         //Creacting JLabel for Lecturer
         department = new JLabel("Department:");
@@ -112,8 +113,92 @@ public class TeacherGUI implements ActionListener{
         
         //Creacting JLabel for Lecturer
         WorkingType = new JLabel("Working Type:");
-        WorkingType.setBounds(497,91,163,50);
+        WorkingType.setBounds(23,156,176,50);
         
+        //Creacting JLabel for Lecturer
+        WorkingHour = new JLabel("Working Hour:");
+        WorkingHour.setBounds(497,157,214,50);
+        
+        //Creacting JLabel for Lecturer
+        employmentstatus = new JLabel("Employment Status:");
+        employmentstatus.setBounds(23,221,281,42);
+        
+        //Creacting JLabel for Lecturer
+        employmentstatus = new JLabel("Employment Status:");
+        employmentstatus.setBounds(23,221,281,42);
+        
+        //Creacting JLabel for Lecturer
+        gradedScore = new JLabel("Graded Score:");
+        gradedScore.setBounds(23,278,183,50);
+        
+        
+        //Creating JTextField for Lecturer
+        forteacherID = new JTextField();
+        forteacherID.setBounds(140,45,182,25);
+        
+        //Creating JTextField for Lecturer
+        forteacherName = new JTextField();
+        forteacherName.setBounds(165,105,182,25);
+        
+        //Creating JTextField for Lecturer
+        fordepartment = new JTextField();
+        fordepartment.setBounds(610,105,182,25);
+        
+        //Creating JTextField for Lecturer
+        forWorkingType = new JTextField();
+        forWorkingType.setBounds(155,169,182,25);
+        
+        //Creating JTextField for Lecturer
+        forWorkingHour = new JTextField();
+        forWorkingHour.setBounds(635,173,182,25);
+        
+        //Creating JTextField for Lecturer
+        foremploymentstatus = new JTextField();
+        foremploymentstatus.setBounds(205,230,182,25);
+        
+        //Creating JTextField for Lecturer
+        forgradedScore = new JTextField();
+        forgradedScore.setBounds(175,290,182,25);
+        
+        //Creating necessary Jbutton
+        Add = new JButton("Add");
+        Add.setBounds(2,363,140,67);
+        
+        //Creating necessary Jbutton
+        GradeAssignment = new JButton("Grade Assignment");
+        GradeAssignment.setBounds(160,363,190,67);
+        
+        //Creating necessary Jbutton
+        Display = new JButton("Display");
+        Display.setBounds(594,363,172,67);
+        
+        //Creating necessary Jbutton
+        Clear = new JButton("Clear");
+        Clear.setBounds(841,361,172,67);
+        
+        //Creating necessary Jbutton
+        Previous = new JButton("Previous");
+        Previous.setBounds(132,462,172,67);
+        
+        //Creating necessary Jbutton
+        Back = new JButton("Quit");
+        Back.setBounds(698,462,172,67);
+        
+        //Setting the background of the button
+        Add.setBackground(new java.awt.Color(198, 99, 99));
+        GradeAssignment.setBackground(new java.awt.Color(198, 99, 99));
+        Display.setBackground(new java.awt.Color(198, 99, 99));
+        Clear.setBackground(new java.awt.Color(198, 99, 99));
+        Previous.setBackground(new java.awt.Color(198, 99, 99));
+        Back.setBackground(new java.awt.Color(198, 99, 99));
+        
+        //Setting the font color aka forgrount of button
+        Add.setForeground(Color.YELLOW); 
+        GradeAssignment.setForeground(Color.YELLOW); 
+        Display.setForeground(Color.YELLOW); 
+        Clear.setForeground(Color.YELLOW); 
+        Previous.setForeground(Color.YELLOW); 
+        Back.setForeground(Color.YELLOW); 
         
         //Declaring font for all JLabel in Lecturer and Tutor
         Font label = new Font("inter", Font.PLAIN, 20);//Declaring the font for buttons
@@ -121,11 +206,46 @@ public class TeacherGUI implements ActionListener{
         teacherName.setFont(label);
         department.setFont(label);
         WorkingType.setFont(label);
+        WorkingHour.setFont(label);
+        employmentstatus.setFont(label);
+        gradedScore.setFont(label);
+        forteacherID.setFont(label);
+        forteacherName.setFont(label);
+        fordepartment.setFont(label);
+        forWorkingType.setFont(label);
+        forWorkingHour.setFont(label);
+        foremploymentstatus.setFont(label);
+        forgradedScore.setFont(label);
         
         //Adding all the lecturer components to lecturer panel
         p_Lecturer.add(teacherID);
         p_Lecturer.add(teacherName);
         p_Lecturer.add(department);
+        p_Lecturer.add(WorkingType);
+        p_Lecturer.add(WorkingHour);
+        p_Lecturer.add(employmentstatus);
+        p_Lecturer.add(gradedScore);
+        p_Lecturer.add(forteacherID);
+        p_Lecturer.add(forteacherName);
+        p_Lecturer.add(fordepartment);
+        p_Lecturer.add(forWorkingType);
+        p_Lecturer.add(forWorkingHour);
+        p_Lecturer.add(foremploymentstatus);
+        p_Lecturer.add(forgradedScore);
+        p_Lecturer.add(Add);
+        p_Lecturer.add(GradeAssignment);
+        p_Lecturer.add(Display);
+        p_Lecturer.add(Clear);
+        p_Lecturer.add(Previous);
+        p_Lecturer.add(Back);
+        
+        //Adding the button to ACTIONLISTENER
+        Add.addActionListener(this);
+        GradeAssignment.addActionListener(this);
+        Display.addActionListener(this);
+        Clear.addActionListener(this);
+        Previous.addActionListener(this);
+        Back.addActionListener(this);
         
         //Creating a background for Frame Teacher GUI
         back = new ImageIcon(getClass().getResource("/background.png"));//Declaring image icon and calling the image  get resource helps to get the image
@@ -149,12 +269,32 @@ public class TeacherGUI implements ActionListener{
             TeacherGUI.dispose();
         }
         else if(e.getSource() == Lecturer){
-            //select.dispose();
             select.setVisible(false);
-            
+            p_Lecturer.setVisible(true);
         }
         else if(e.getSource() == Tutor){
+            select.setVisible(false);
+            t_panel.setVisible(true);
+        }
+        
+        if(e.getSource() == Add){
             
+        }
+        else if(e.getSource() == GradeAssignment){
+            
+        }
+        else if(e.getSource() == Display){
+            
+        }
+        else if(e.getSource() == Clear){
+            Clear.setText("");
+        }
+        else if(e.getSource() == Previous){
+            p_Lecturer.setVisible(false);
+            select.setVisible(true);
+        }
+        else if(e.getSource() == Back){
+            TeacherGUI.dispose();
         }
     }
 
