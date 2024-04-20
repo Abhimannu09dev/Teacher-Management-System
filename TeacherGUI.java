@@ -166,23 +166,23 @@ public class TeacherGUI implements ActionListener{
         
         //Creating necessary Jbutton
         GradeAssignment = new JButton("Grade Assignment");
-        GradeAssignment.setBounds(160,363,190,67);
+        GradeAssignment.setBounds(160,363,200,67);
         
         //Creating necessary Jbutton
         Display = new JButton("Display");
-        Display.setBounds(594,363,172,67);
+        Display.setBounds(400,363,172,67);
         
         //Creating necessary Jbutton
         Clear = new JButton("Clear");
-        Clear.setBounds(841,361,172,67);
+        Clear.setBounds(580,361,172,67);
         
         //Creating necessary Jbutton
         Previous = new JButton("Previous");
-        Previous.setBounds(132,462,172,67);
+        Previous.setBounds(122,462,172,67);
         
         //Creating necessary Jbutton
         Back = new JButton("Quit");
-        Back.setBounds(698,462,172,67);
+        Back.setBounds(450,462,172,67);
         
         //Setting the background of the button
         Add.setBackground(new java.awt.Color(198, 99, 99));
@@ -201,7 +201,10 @@ public class TeacherGUI implements ActionListener{
         Back.setForeground(Color.YELLOW); 
         
         //Declaring font for all JLabel in Lecturer and Tutor
-        Font label = new Font("inter", Font.PLAIN, 20);//Declaring the font for buttons
+        Font label = new Font("inter", Font.PLAIN, 20);
+        
+        
+        //Setting font
         teacherID.setFont(label);
         teacherName.setFont(label);
         department.setFont(label);
@@ -216,6 +219,12 @@ public class TeacherGUI implements ActionListener{
         forWorkingHour.setFont(label);
         foremploymentstatus.setFont(label);
         forgradedScore.setFont(label);
+        Add.setFont(label);
+        GradeAssignment.setFont(label);
+        Display.setFont(label);
+        Clear.setFont(label);
+        Previous.setFont(label);
+        Back.setFont(label);
         
         //Adding all the lecturer components to lecturer panel
         p_Lecturer.add(teacherID);
@@ -246,6 +255,29 @@ public class TeacherGUI implements ActionListener{
         Clear.addActionListener(this);
         Previous.addActionListener(this);
         Back.addActionListener(this);
+        
+        //Creating the new panel for Tutor
+        t_panel = new JPanel();
+        
+        //Setting the layout for panel Tutor
+        t_panel.setBounds(236,190,825,571);
+        t_panel.setLayout(null);
+        TeacherGUI.add(t_panel);
+        
+        //Adding all the necessary label and textfield for tutor panel
+        t_panel.add(teacherID);
+        t_panel.add(teacherName);
+        t_panel.add(department);
+        t_panel.add(WorkingType);
+        t_panel.add(WorkingHour);
+        t_panel.add(employmentstatus);
+        t_panel.add(gradedScore);
+        t_panel.add(forteacherID);
+        t_panel.add(forteacherName);
+        t_panel.add(fordepartment);
+        t_panel.add(forWorkingType);
+        t_panel.add(forWorkingHour);
+        t_panel.add(foremploymentstatus);
         
         //Creating a background for Frame Teacher GUI
         back = new ImageIcon(getClass().getResource("/background.png"));//Declaring image icon and calling the image  get resource helps to get the image
@@ -287,7 +319,14 @@ public class TeacherGUI implements ActionListener{
             
         }
         else if(e.getSource() == Clear){
-            Clear.setText("");
+            //Clear.setText("");
+            forteacherID.setText("");
+            forteacherName.setText("");
+            fordepartment.setText("");
+            forWorkingType.setText("");
+            forWorkingHour.setText("");
+            foremploymentstatus.setText("");
+            forgradedScore.setText("");
         }
         else if(e.getSource() == Previous){
             p_Lecturer.setVisible(false);
@@ -297,7 +336,7 @@ public class TeacherGUI implements ActionListener{
             TeacherGUI.dispose();
         }
     }
-
+}
     public static void main(String[] args){
         new TeacherGUI();
     }
