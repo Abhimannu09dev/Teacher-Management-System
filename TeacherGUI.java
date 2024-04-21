@@ -12,13 +12,13 @@ import java.awt.event.ActionListener;
 public class TeacherGUI implements ActionListener{
     JFrame TeacherGUI;
     JLabel background,heading,Logo_,paragraph,try_,teacherID,teacherName,department,WorkingType,WorkingHour,employmentstatus,gradedScore;
-    JLabel t_teacherID,t_teacherName,t_department,t_WorkingType,t_WorkingHour,t_employmentstatus,setSalary;//for tutor
+    JLabel t_teacherID,t_teacherName,t_department,t_WorkingType,t_WorkingHour,t_employmentstatus,t_setSalary;//for tutor
     JTextField forteacherID,forteacherName,fordepartment,forWorkingType,forWorkingHour,foremploymentstatus,forgradedScore;
-    JTextField t_forteacherID,t_forteacherName,t_fordepartment,t_forWorkingType,t_forWorkingHour,t_foremploymentstatus,forsetSalary;//for tutor
+    JTextField t_forteacherID,t_forteacherName,t_fordepartment,t_forWorkingType,t_forWorkingHour,t_foremploymentstatus,t_forsetSalary;//for tutor
     JPanel select,p_Lecturer,t_panel;
     ImageIcon back,Logo,try_1;
     JButton Lecturer,Tutor,Quit,Add,GradeAssignment,Display,Clear,Previous,Back;
-    JButton t_Add,SetSalary,t_Display,t_Clear,t_Previous,t_Back;
+    JButton t_Add,t_salary,t_Display,t_Clear,t_Previous,t_Back;
     
     //Creating constructor
     public TeacherGUI(){
@@ -267,78 +267,76 @@ public class TeacherGUI implements ActionListener{
         
         //Setting the layout for panel Tutor
         t_panel.setBounds(236,190,825,571);
-        t_panel.setLayout(null);
         TeacherGUI.add(t_panel);
+        t_panel.setLayout(null);
         t_panel.setVisible(false);
         
-        //Creating JLabel for Lecturer
+        //Creating JLabel for Tutor
         t_teacherID = new JLabel("Teacher ID:");
         t_teacherID.setBounds(23,45,149,33);
         
-        //Creacting JLabel for Lecturer
+        //Creacting JLabel for Tutor
         t_teacherName = new JLabel("Teacher name:");
         t_teacherName.setBounds(23,91,163,50);
         
-        //Creacting JLabel for Lecturer
+        //Creacting JLabel for Tutor
         t_department = new JLabel("Department:");
         t_department.setBounds(497,91,163,50);
         
-        //Creacting JLabel for Lecturer
+        //Creacting JLabel for Tutor
         t_WorkingType = new JLabel("Working Type:");
         t_WorkingType.setBounds(23,156,176,50);
         
-        //Creacting JLabel for Lecturer
+        //Creacting JLabel for Tutor
         t_WorkingHour = new JLabel("Working Hour:");
         t_WorkingHour.setBounds(497,157,214,50);
         
-        //Creacting JLabel for Lecturer
+        //Creacting JLabel for Tutor
         t_employmentstatus = new JLabel("Employment Status:");
         t_employmentstatus.setBounds(23,221,281,42);
         
-        //Creacting JLabel for Lecturer
-        t_employmentstatus = new JLabel("Employment Status:");
-        t_employmentstatus.setBounds(23,221,281,42);
-        
-        //Creacting JLabel for Lecturer
-        setSalary = new JLabel("Set Salary:");
-        setSalary.setBounds(23,278,183,50);
+        //Creacting JLabel for Tutor
+        t_setSalary = new JLabel("Set Salary:");
+        t_setSalary.setBounds(23,278,183,50);
         
         
-        //Creating JTextField for Lecturer
+        //Creating JTextField for Tutor
         t_forteacherID = new JTextField();
         t_forteacherID.setBounds(140,45,182,25);
         
-        //Creating JTextField for Lecturer
+        //Creating JTextField for Tutor
         t_forteacherName = new JTextField();
         t_forteacherName.setBounds(165,105,182,25);
         
-        //Creating JTextField for Lecturer
+        //Creating JTextField for Tutor
         t_fordepartment = new JTextField();
         t_fordepartment.setBounds(610,105,182,25);
         
-        //Creating JTextField for Lecturer
+        //Creating JTextField for Tutor
         t_forWorkingType = new JTextField();
         t_forWorkingType.setBounds(155,169,182,25);
         
-        //Creating JTextField for Lecturer
+        //Creating JTextField for Tutor
         t_forWorkingHour = new JTextField();
         t_forWorkingHour.setBounds(635,173,182,25);
         
-        //Creating JTextField for Lecturer
+        //Creating JTextField for Tutor
         t_foremploymentstatus = new JTextField();
         t_foremploymentstatus.setBounds(205,230,182,25);
         
-        //Creating JTextField for Lecturer
-        forsetSalary = new JTextField();
-        forsetSalary.setBounds(175,290,182,25);
+        //Creating JTextField for Tutor
+        t_forsetSalary = new JTextField();
+        t_forsetSalary.setBounds(175,290,182,25);
         
         //Creating necessary Jbutton
         t_Add = new JButton("Add");
         t_Add.setBounds(2,363,140,67);
         
+        
         //Creating necessary Jbutton
-        SetSalary = new JButton("Grade Assignment");
-        SetSalary.setBounds(160,363,200,67);
+        t_salary = new JButton("Set Salary");
+        t_salary.setBounds(160,363,200,67);
+        
         
         //Creating necessary Jbutton
         t_Display = new JButton("Display");
@@ -358,7 +356,7 @@ public class TeacherGUI implements ActionListener{
         
         //Setting the background of the button
         t_Add.setBackground(new java.awt.Color(198, 99, 99));
-        SetSalary.setBackground(new java.awt.Color(198, 99, 99));
+        t_salary.setBackground(new java.awt.Color(198, 99, 99));
         t_Display.setBackground(new java.awt.Color(198, 99, 99));
         t_Clear.setBackground(new java.awt.Color(198, 99, 99));
         t_Previous.setBackground(new java.awt.Color(198, 99, 99));
@@ -366,7 +364,7 @@ public class TeacherGUI implements ActionListener{
         
         //Setting the font color aka forgrount of button
         t_Add.setForeground(Color.YELLOW); 
-        SetSalary.setForeground(Color.YELLOW); 
+        t_salary.setForeground(Color.YELLOW); 
         t_Display.setForeground(Color.YELLOW); 
         t_Clear.setForeground(Color.YELLOW); 
         t_Previous.setForeground(Color.YELLOW); 
@@ -379,16 +377,16 @@ public class TeacherGUI implements ActionListener{
         t_WorkingType.setFont(label);
         t_WorkingHour.setFont(label);
         t_employmentstatus.setFont(label);
-        SetSalary.setFont(label);
+        t_setSalary.setFont(label);
         t_forteacherID.setFont(label);
         t_forteacherName.setFont(label);
         t_fordepartment.setFont(label);
         t_forWorkingType.setFont(label);
         t_forWorkingHour.setFont(label);
         t_foremploymentstatus.setFont(label);
-        setSalary.setFont(label);
+        t_salary.setFont(label);
         t_Add.setFont(label);
-        SetSalary.setFont(label);
+        t_salary.setFont(label);
         t_Display.setFont(label);
         t_Clear.setFont(label);
         t_Previous.setFont(label);
@@ -408,10 +406,10 @@ public class TeacherGUI implements ActionListener{
         t_panel.add(t_forWorkingType);
         t_panel.add(t_forWorkingHour);
         t_panel.add(t_foremploymentstatus);
-        t_panel.add(setSalary);
-        t_panel.add(forsetSalary);
+        t_panel.add(t_setSalary);
+        t_panel.add(t_forsetSalary);
         t_panel.add(t_Add);
-        t_panel.add(SetSalary);
+        t_panel.add(t_salary);
         t_panel.add(t_Display);
         t_panel.add(t_Back);
         t_panel.add(t_Clear);
@@ -420,7 +418,7 @@ public class TeacherGUI implements ActionListener{
         
         //Adding the button to ACTIONLISTENER
         t_Add.addActionListener(this);
-        SetSalary.addActionListener(this);
+        t_salary.addActionListener(this);
         t_Display.addActionListener(this);
         t_Clear.addActionListener(this);
         t_Previous.addActionListener(this);
@@ -446,18 +444,19 @@ public class TeacherGUI implements ActionListener{
     //Adding different EventHandeling functions in the buttons
     @Override
     public void actionPerformed(ActionEvent e){
-        if(e.getSource() == Quit){
+        if(e.getSource() == Quit){//checking if the user clicked the quit button in main panel
             TeacherGUI.dispose();
         }
-        else if(e.getSource() == Lecturer){
-            select.setVisible(false);
-            p_Lecturer.setVisible(true);
+        else if(e.getSource() == Lecturer){//Checking if the user wants to enter Lecturer
+            select.setVisible(false);//It removes the main panel
+            p_Lecturer.setVisible(true);//It shows the Lecturer panel
         }
-        else if(e.getSource() == Tutor){
-            select.setVisible(false);
-            t_panel.setVisible(true);
+        else if(e.getSource() == Tutor){//Checking if the user wants to enter Tutor 
+            select.setVisible(false);//It removes the main panel
+            t_panel.setVisible(true);//It shows the Tutor panel
         }
         
+        //Checking if the user click any buttons in Lecturer Panel
         if(e.getSource() == Add){
             
         }
@@ -468,14 +467,13 @@ public class TeacherGUI implements ActionListener{
             
         }
         else if(e.getSource() == Clear){
-            //Clear.setText("");
-            forteacherID.setText("");
-            forteacherName.setText("");
-            fordepartment.setText("");
-            forWorkingType.setText("");
-            forWorkingHour.setText("");
-            foremploymentstatus.setText("");
-            forgradedScore.setText("");
+            t_forteacherID.setText("");
+            t_forteacherName.setText("");
+            t_fordepartment.setText("");
+            t_forWorkingType.setText("");
+            t_forWorkingHour.setText("");
+            t_foremploymentstatus.setText("");
+            t_forsetSalary.setText("");
         }
         else if(e.getSource() == Previous){
             p_Lecturer.setVisible(false);
@@ -484,6 +482,35 @@ public class TeacherGUI implements ActionListener{
         else if(e.getSource() == Back){
             TeacherGUI.dispose();
         }
+        
+        
+        //Checking if the user click any buttons in Tutor Panel
+        if(e.getSource() == t_Add){
+            
+        }
+        else if(e.getSource() == t_salary){
+            
+        }
+        else if(e.getSource() == t_Display){
+            
+        }
+        else if(e.getSource() == t_Clear){
+            forteacherID.setText("");
+            forteacherName.setText("");
+            fordepartment.setText("");
+            forWorkingType.setText("");
+            forWorkingHour.setText("");
+            foremploymentstatus.setText("");
+            forgradedScore.setText("");
+        }
+        else if(e.getSource() == t_Previous){
+            p_Lecturer.setVisible(false);
+            select.setVisible(true);
+        }
+        else if(e.getSource() == t_Back){
+            TeacherGUI.dispose();
+        }
+        
     }
 }
     public static void main(String[] args){
