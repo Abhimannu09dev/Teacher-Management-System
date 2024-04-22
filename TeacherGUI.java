@@ -4,6 +4,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -19,8 +20,9 @@ public class TeacherGUI implements ActionListener{
     ImageIcon back,Logo,try_1;
     JButton Lecturer,Tutor,Quit,Add,GradeAssignment,Display,Clear,Previous,Back;
     JButton t_Add,t_salary,t_Display,t_Clear,t_Previous,t_Back;
+    JOptionPane empty;
     
-    //Creating constructor
+    //Creating constructor  
     public TeacherGUI(){
         TeacherGUI = new JFrame();
         
@@ -385,6 +387,7 @@ public class TeacherGUI implements ActionListener{
         t_forWorkingHour.setFont(label);
         t_foremploymentstatus.setFont(label);
         t_salary.setFont(label);
+        t_forsetSalary.setFont(label);
         t_Add.setFont(label);
         t_salary.setFont(label);
         t_Display.setFont(label);
@@ -467,13 +470,13 @@ public class TeacherGUI implements ActionListener{
             
         }
         else if(e.getSource() == Clear){
-            t_forteacherID.setText("");
-            t_forteacherName.setText("");
-            t_fordepartment.setText("");
-            t_forWorkingType.setText("");
-            t_forWorkingHour.setText("");
-            t_foremploymentstatus.setText("");
-            t_forsetSalary.setText("");
+            forteacherID.setText("");
+            forteacherName.setText("");
+            fordepartment.setText("");
+            forWorkingType.setText("");
+            forWorkingHour.setText("");
+            foremploymentstatus.setText("");
+            forgradedScore.setText("");
         }
         else if(e.getSource() == Previous){
             p_Lecturer.setVisible(false);
@@ -486,7 +489,20 @@ public class TeacherGUI implements ActionListener{
         
         //Checking if the user click any buttons in Tutor Panel
         if(e.getSource() == t_Add){
-            
+            /*String teacherID = t_forteacherID.getText();
+            String teacherName = t_forteacherName.getText();
+            String department = t_fordepartment.getText();
+            String workingType = t_forWorkingType.getText();
+            String workingHour = t_forWorkingHour.getText();
+            String employmentStatus = t_foremploymentstatus.getText();
+            String gradedScore = forgradedScore.getText();
+            if(teacherID.isEmpty() || teacherName.isEmpty() || department.isEmpty() || workingType.isEmpty() || workingHour.isEmpty() || employmentStatus.isEmpty() || gradedScore.isEmpty()){
+                empty = new JOptionPane("Please Fill all the asked information");
+                
+                TeacherGUI.add(empty);
+
+            }
+            */
         }
         else if(e.getSource() == t_salary){
             
@@ -495,13 +511,13 @@ public class TeacherGUI implements ActionListener{
             
         }
         else if(e.getSource() == t_Clear){
-            forteacherID.setText("");
-            forteacherName.setText("");
-            fordepartment.setText("");
-            forWorkingType.setText("");
-            forWorkingHour.setText("");
-            foremploymentstatus.setText("");
-            forgradedScore.setText("");
+            t_forteacherID.setText("");
+            t_forteacherName.setText("");
+            t_fordepartment.setText("");
+            t_forWorkingType.setText("");
+            t_forWorkingHour.setText("");
+            t_foremploymentstatus.setText("");
+            t_forsetSalary.setText("");
         }
         else if(e.getSource() == t_Previous){
             p_Lecturer.setVisible(false);
