@@ -443,7 +443,11 @@ public class TeacherGUI implements ActionListener{
         TeacherGUI.setSize(1280,832);
         
     }
-    
+    //main function
+    public static void main(String[] args){
+        new TeacherGUI();
+    }
+
     //Adding different EventHandeling functions in the buttons
     @Override
     public void actionPerformed(ActionEvent e){
@@ -461,6 +465,7 @@ public class TeacherGUI implements ActionListener{
         
         //Checking if the user click any buttons in Lecturer Panel
         if(e.getSource() == Add){
+            //else part ma Option pane rakhne ani added vanera dekhaune
             
         }
         else if(e.getSource() == GradeAssignment){
@@ -529,7 +534,4 @@ public class TeacherGUI implements ActionListener{
         
     }
 }
-    public static void main(String[] args){
-        new TeacherGUI();
-    }
 }
