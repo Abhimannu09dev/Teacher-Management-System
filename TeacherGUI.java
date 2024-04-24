@@ -465,7 +465,37 @@ public class TeacherGUI implements ActionListener{
         
         //Checking if the user click any buttons in Lecturer Panel
         if(e.getSource() == Add){
-            //else part ma Option pane rakhne ani added vanera dekhaune
+            //Checking if the user added the correct Teacher ID
+            try{
+                Integer.parseInt(forteacherID.getText());
+             
+                //Checkif the user added all the needed information
+                String teacherID = forteacherID.getText();
+                String teacherName = forteacherName.getText();
+                String department = fordepartment.getText();
+                String workingType = forWorkingType.getText();
+                String workingHour = forWorkingHour.getText();
+                String employmentStatus = foremploymentstatus.getText();
+                String gradedScore = forgradedScore.getText();  
+                if(teacherID.isEmpty() || teacherName.isEmpty() || department.isEmpty() || workingType.isEmpty() || workingHour.isEmpty() || employmentStatus.isEmpty() || gradedScore.isEmpty()){
+                    JOptionPane.showMessageDialog(TeacherGUI,"Please Fill all the asked information","Alert",JOptionPane.WARNING_MESSAGE);  
+                }
+                else{
+                    //Showing the message if the data is added successfully
+                    JOptionPane.showMessageDialog(TeacherGUI,"Data Added Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
+                    //Setting the textfield to empty after the data is added
+                    forteacherID.setText("");
+                    forteacherName.setText("");
+                    fordepartment.setText("");
+                    forWorkingType.setText("");
+                    forWorkingHour.setText("");
+                    foremploymentstatus.setText("");
+                    forgradedScore.setText("");
+                }
+            }catch (NumberFormatException a) {
+                JOptionPane.showMessageDialog(TeacherGUI,"Please Enter the Valid Teacher ID","Alert",JOptionPane.WARNING_MESSAGE);
+                
+            }  
             
         }
         else if(e.getSource() == GradeAssignment){
@@ -494,7 +524,7 @@ public class TeacherGUI implements ActionListener{
         
         //Checking if the user click any buttons in Tutor Panel
         if(e.getSource() == t_Add){
-            /*String teacherID = t_forteacherID.getText();
+            String teacherID = t_forteacherID.getText();
             String teacherName = t_forteacherName.getText();
             String department = t_fordepartment.getText();
             String workingType = t_forWorkingType.getText();
@@ -502,12 +532,12 @@ public class TeacherGUI implements ActionListener{
             String employmentStatus = t_foremploymentstatus.getText();
             String gradedScore = forgradedScore.getText();
             if(teacherID.isEmpty() || teacherName.isEmpty() || department.isEmpty() || workingType.isEmpty() || workingHour.isEmpty() || employmentStatus.isEmpty() || gradedScore.isEmpty()){
-                empty = new JOptionPane("Please Fill all the asked information");
-                
-                TeacherGUI.add(empty);
-
+                JOptionPane.showMessageDialog(TeacherGUI,"Please Fill all the asked information","Alert",JOptionPane.WARNING_MESSAGE);  
             }
-            */
+            else{
+                JOptionPane.showMessageDialog(TeacherGUI,"Data Added Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
+            }
+            
         }
         else if(e.getSource() == t_salary){
             
@@ -525,13 +555,11 @@ public class TeacherGUI implements ActionListener{
             t_forsetSalary.setText("");
         }
         else if(e.getSource() == t_Previous){
-            p_Lecturer.setVisible(false);
+            t_panel.setVisible(false);
             select.setVisible(true);
         }
         else if(e.getSource() == t_Back){
             TeacherGUI.dispose();
         }
-        
     }
-}
 }
