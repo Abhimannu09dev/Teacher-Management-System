@@ -9,15 +9,16 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 public class TeacherGUI implements ActionListener{
-    private ArrayList<Teacher> teacherList = new ArrayList<Teacher>();
+    //private ArrayList<Teacher> teacherList = new ArrayList<Teacher>();
     private JFrame TeacherGUI;
     private JLabel background,heading,Logo_,paragraph,try_,teacherID,teacherName,department,WorkingType,WorkingHour,employmentstatus,gradedScore,address,yearsOfExperience;
-    private JLabel t_teacherID,t_teacherName,t_department,t_WorkingType,t_WorkingHour,t_employmentstatus,t_setSalary;//for tutor
+    private JLabel t_teacherID,t_teacherName,t_address,t_WorkingType,t_WorkingHour,t_employmentstatus,t_setSalary,t_specialization,t_academicQualifications,t_performanceIndex;//for tutor
+    //t_performanceIndex;//for tutor
     private JTextField forteacherID,forteacherName,fordepartment,forWorkingType,forWorkingHour,foremploymentstatus,forgradedScore,foraddress,foryearsOfExperience;
-    private JTextField t_forteacherID,t_forteacherName,t_fordepartment,t_forWorkingType,t_forWorkingHour,t_foremploymentstatus,t_forsetSalary;//for tutor
+    private JTextField t_forteacherID,t_forteacherName,t_foraddress,t_forWorkingType,t_forWorkingHour,t_foremploymentstatus,t_forsetSalary;//for tutor
     private JPanel select,p_Lecturer,t_panel;
     private ImageIcon back,Logo,try_1;
     private JButton Lecturer,Tutor,Quit,Add,GradeAssignment,Display,Clear,Previous,Back;
@@ -300,6 +301,7 @@ public class TeacherGUI implements ActionListener{
         TeacherGUI.add(t_panel);
         t_panel.setLayout(null);
         t_panel.setVisible(false);
+
         
         //Creating JLabel for Tutor
         t_teacherID = new JLabel("Teacher ID:");
@@ -308,11 +310,11 @@ public class TeacherGUI implements ActionListener{
         //Creacting JLabel for Tutor
         t_teacherName = new JLabel("Teacher name:");
         t_teacherName.setBounds(23,91,163,50);
-        
+
         //Creacting JLabel for Tutor
-        t_department = new JLabel("Department:");
-        t_department.setBounds(497,91,163,50);
-        
+        t_address = new JLabel("Address:");
+        t_address.setBounds(497,91,163,50);
+
         //Creacting JLabel for Tutor
         t_WorkingType = new JLabel("Working Type:");
         t_WorkingType.setBounds(23,156,176,50);
@@ -326,9 +328,20 @@ public class TeacherGUI implements ActionListener{
         t_employmentstatus.setBounds(23,221,281,42);
         
         //Creacting JLabel for Tutor
-        t_setSalary = new JLabel("Set Salary:");
+        t_setSalary = new JLabel("Salary:");
         t_setSalary.setBounds(23,278,183,50);
+
+        //Creating JLabel for Tutor
+        t_specialization = new JLabel();
+        t_specialization.setBounds(497,221,214,50);
         
+        // //Creating JLabel for Tutor
+        // t_academicQualifications = new JLabel();
+        // t_academicQualifications.setBounds(497,221,214,50);
+
+        // //Creating JLabel for Tutor
+        // t_performanceIndex = new JLabel();
+        // t_performanceIndex.setBounds(23,335,214,50);        
         
         //Creating JTextField for Tutor
         t_forteacherID = new JTextField();
@@ -339,8 +352,8 @@ public class TeacherGUI implements ActionListener{
         t_forteacherName.setBounds(165,105,182,25);
         
         //Creating JTextField for Tutor
-        t_fordepartment = new JTextField();
-        t_fordepartment.setBounds(610,105,182,25);
+        t_foraddress = new JTextField();
+        t_foraddress.setBounds(610,105,182,25);
         
         //Creating JTextField for Tutor
         t_forWorkingType = new JTextField();
@@ -403,14 +416,17 @@ public class TeacherGUI implements ActionListener{
         //Setting the font for JButton
         t_teacherID.setFont(label);
         t_teacherName.setFont(label);
-        t_department.setFont(label);
+        t_address.setFont(label);
         t_WorkingType.setFont(label);
         t_WorkingHour.setFont(label);
         t_employmentstatus.setFont(label);
+        t_specialization.setFont(label);
         t_setSalary.setFont(label);
+        t_academicQualifications.setFont(label);
+        t_performanceIndex.setFont(label);
         t_forteacherID.setFont(label);
         t_forteacherName.setFont(label);
-        t_fordepartment.setFont(label);
+        t_foraddress.setFont(label);
         t_forWorkingType.setFont(label);
         t_forWorkingHour.setFont(label);
         t_foremploymentstatus.setFont(label);
@@ -427,13 +443,16 @@ public class TeacherGUI implements ActionListener{
         //Adding all the necessary label and textfield for tutor panel
         t_panel.add(t_teacherID);
         t_panel.add(t_teacherName);
-        t_panel.add(t_department);
+        t_panel.add(t_address);
         t_panel.add(t_WorkingType);
         t_panel.add(t_WorkingHour);
         t_panel.add(t_employmentstatus);
+        t_panel.add(t_specialization);
+        t_panel.add(t_academicQualifications);
+        t_panel.add(t_performanceIndex);
         t_panel.add(t_forteacherID);
         t_panel.add(t_forteacherName);
-        t_panel.add(t_fordepartment);
+        t_panel.add(t_foraddress);
         t_panel.add(t_forWorkingType);
         t_panel.add(t_forWorkingHour);
         t_panel.add(t_foremploymentstatus);
@@ -511,9 +530,9 @@ public class TeacherGUI implements ActionListener{
                     JOptionPane.showMessageDialog(TeacherGUI,"Please Fill all the asked information","Alert",JOptionPane.WARNING_MESSAGE);  
                 }
                 else{
-                    Lecturer lecturer_list= new Lecturer( teacherID,  teacherName,  address,  workingType,  employmentStatus, workingHour, Department, yearOfExperience);
-                    teacherList.add(Lecturer);
-                    //Showing the message if the data is added successfully
+                    //Lecturer lecturer_list= new Lecturer(teacherID, teacherName, address, workingType, employmentStatus, workingHour, Department, yearOfExperience);
+                    //teacherList.add(Lecturer);
+                    //Showing the message if that the data is added successfully
                     JOptionPane.showMessageDialog(TeacherGUI,"Data Added Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
                     //Setting the textfield to empty after the data is added
                     forteacherID.setText("");
@@ -560,15 +579,14 @@ public class TeacherGUI implements ActionListener{
                 Integer.parseInt(forteacherID.getText());
                 String teacherID = t_forteacherID.getText();
                 String teacherName = t_forteacherName.getText();
-                String address = foraddress.getText();
-                String Department = t_fordepartment.getText();
+                String address = t_foraddress.getText();
                 String yearOfExperience = foryearsOfExperience.getText();
                 String workingType = t_forWorkingType.getText();
                 String workingHour = t_forWorkingHour.getText();
                 String employmentStatus = t_foremploymentstatus.getText();
                 String gradedScore = forgradedScore.getText();
                 //Checkif the user added all the needed information
-                if(teacherID.isEmpty() || teacherName.isEmpty() || Department.isEmpty() || workingType.isEmpty() || workingHour.isEmpty() || employmentStatus.isEmpty() || gradedScore.isEmpty()){
+                if(teacherID.isEmpty() || teacherName.isEmpty() || address.isEmpty() || yearOfExperience.isEmpty() || workingType.isEmpty() || workingHour.isEmpty() || employmentStatus.isEmpty() || gradedScore.isEmpty()){
                     JOptionPane.showMessageDialog(TeacherGUI,"Please Fill all the asked information","Alert",JOptionPane.WARNING_MESSAGE);  
                 }
                 else{
@@ -602,7 +620,7 @@ public class TeacherGUI implements ActionListener{
         else if(e.getSource() == t_Clear){
             t_forteacherID.setText("");
             t_forteacherName.setText("");
-            t_fordepartment.setText("");
+            t_foraddress.setText("");
             t_forWorkingType.setText("");
             t_forWorkingHour.setText("");
             t_foremploymentstatus.setText("");
