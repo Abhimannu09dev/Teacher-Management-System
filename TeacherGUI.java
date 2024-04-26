@@ -15,9 +15,9 @@ public class TeacherGUI implements ActionListener{
     private ArrayList<Teacher> teacherList;
     private JFrame TeacherGUI;
     private int lteacher_ID,lworking_Hours,lyearsOfExperience;
-    private JLabel background,heading,Logo_,paragraph,try_,teacherID,teacherName,department,WorkingType,WorkingHour,employmentstatus,gradedScore,address,yearsOfExperience;
+    private JLabel background,heading,Logo_,paragraph,try_,teacherID,teacherName,department,WorkingType,WorkingHour,employmentstatus,address,yearsOfExperience;
     private JLabel t_teacherID,t_teacherName,t_address,t_WorkingType,t_WorkingHour,t_employmentstatus,t_setSalary,t_specialization,t_academicQualifications,t_performanceIndex;//for tutor
-    private JTextField forteacherID,forteacherName,fordepartment,forWorkingType,forWorkingHour,foremploymentstatus,forgradedScore,foraddress,foryearsOfExperience;
+    private JTextField forteacherID,forteacherName,fordepartment,forWorkingType,forWorkingHour,foremploymentstatus,foraddress,foryearsOfExperience;
     private JTextField t_forteacherID,t_forteacherName,t_foraddress,t_forWorkingType,t_forWorkingHour,t_foremploymentstatus,t_forsetSalary,t_forspecialization,t_foracademicQualifications,t_forperformanceIndex;//for tutor
     private JPanel select,p_Lecturer,t_panel;
     private ImageIcon back,Logo,try_1;
@@ -622,23 +622,36 @@ public class TeacherGUI implements ActionListener{
             else{
                 for(Teacher teacher : teacherList){
                     if(teacher instanceof Lecturer){
+                        // Downcasting
+                        Lecturer lecturer = (Lecturer) teacher;
                         //Checking if the user entered the correct teacher ID
                         try{
                             int gra = Integer.parseInt(forteacherID.getText());
-                            String teacherName = forteacherName.getText();
-                            if(forteacherID.getText().isEmpty() || forteacherName.getText().isEmpty()){
-                                JOptionPane.showMessageDialog(TeacherGUI,"Please enter valid teacher ID and teacher name to grade Assaignment","Alert",JOptionPane.WARNING_MESSAGE);
+                            String dep = fordepartment.getText();
+                            int yoe = Integer.parseInt(foryearsOfExperience.getText());
+                            String YOE = Integer.toString(yoe);
+                            if(forteacherID.getText().isEmpty() || dep.isEmpty() || YOE.isEmpty()){
+                                JOptionPane.showMessageDialog(TeacherGUI,"Please enter all the required data to grade Assaignment\n Required Data:\n Teacher ID \n Department \n Year of Experience","Alert",JOptionPane.WARNING_MESSAGE);
                             }
-                            else if (gra == teacher.getTeacherID() || teacherName.equals(teacher.getTeacherName())){
+                            else if (gra == teacher.getTeacherID() || dep.equals(lecturer.getDepartment()) || yoe == lecturer.getYearsOfExperience()){
+                                //Taking the grade from the user
                                 String grade = JOptionPane.showInputDialog("Grade Assaignment");
+                                //Changing the string to integer
+                                int grad = Integer.parseInt(grade);
                                 try{
                                     //Checking if the user entered the correct grade
                                     int ch = Integer.parseInt(grade);
                                     if (ch >=0 && ch<=100){
                                         JOptionPane.showMessageDialog(TeacherGUI,"Grade Added Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
-                                        //clearing the textfield after the data is added
+
+                                        //Calling the method to grade the assignment
+                                        lecturer.gradeAssignment(grad,dep,yoe);
+
+                                        //clearing the textfield after the data is added   
                                         forteacherID.setText("");
                                         forteacherName.setText("");
+                                        fordepartment.setText("");
+                                        foryearsOfExperience.setText("");
                                     }
                                     else{
                                         JOptionPane.showMessageDialog(TeacherGUI,"Please enter the valid grade","Alert",JOptionPane.WARNING_MESSAGE);
@@ -649,7 +662,7 @@ public class TeacherGUI implements ActionListener{
                             }
                         
                             }catch(NumberFormatException a){
-                                JOptionPane.showMessageDialog(TeacherGUI,"Please enter valid teacher ID and teacher name to grade Assaignment","Alert",JOptionPane.WARNING_MESSAGE);
+                                JOptionPane.showMessageDialog(TeacherGUI,"Please enter valid data\n Required Data:\n Teacher ID \n Department \n Year of Experience","Alert",JOptionPane.WARNING_MESSAGE);
                         }
                     }
                 }
@@ -660,10 +673,17 @@ public class TeacherGUI implements ActionListener{
             if(teacherList.isEmpty()){
                 JOptionPane.showMessageDialog(TeacherGUI,"No data to display","Alert",JOptionPane.WARNING_MESSAGE);
             }
-            else{
-                for(Teacher teacher : teacherList){
-                    if(teacher instanceof Lecturer){
-                        JOptionPane.showMessageDialog(TeacherGUI,teacher.toString());
+            else {
+                for (Teacher teacher : teacherList) {
+                    if (teacher instanceof Lecturer) {
+                        // display = new JFrame();
+                        // display.setTitle("Display Lecturer");
+                        // display.setSize(500, 500);
+                        // display.setLayout(null);
+                        // display.setVisible(true);
+                        // JLabel displayData = new JLabel("Teacher ID: " + teacher.getTeacherID() + "\nTeacher Name: " + teacher.getTeacherName() + "\nAddress: " + teacher.getAddress() + "\nWorking Type: " + teacher.getWorkingType() + "\nEmployment Status: ");// + teacher.getEmploymentStatus() + "\nWorking Hour: " + ((Lecturer) teacher).getWorkingHour() + "\nDepartment: " + ((Lecturer) teacher).getDepartment() + "\nYears of Experience: " + ((Lecturer) teacher).getYearsOfExperience());
+                        // displayData.setBounds(50, 50, 400, 400);
+                        // display.add(displayData);
                     }
                 }
             }
@@ -714,9 +734,22 @@ public class TeacherGUI implements ActionListener{
                     check_salary = Double.parseDouble(t_forsetSalary.getText());
                 //Checking if arraylist is empty or not
                 if(teacherList.isEmpty()){
+
                     //Adding the data to the ArrayList
                     Tutor tutor_list = new Tutor(teacher_ID, teacherName, address, workingType, employmentStatus, working_Hours, check_salary, specialization, academicQualifications, performanceIndex);
                     teacherList.add(tutor_list);  
+
+                    //Setting the textfield to empty after the data is added
+                    t_forteacherID.setText("");
+                    t_forteacherName.setText("");
+                    t_foraddress.setText("");
+                    t_forWorkingHour.setText("");
+                    t_forWorkingType.setText("");
+                    t_foremploymentstatus.setText("");
+                    t_forspecialization.setText("");
+                    t_forsetSalary.setText("");
+                    t_foracademicQualifications.setText("");
+                    t_forperformanceIndex.setText("");
                 }else{
                     //Checking if the teacher ID is already added or not
                     boolean check = false;
@@ -725,7 +758,6 @@ public class TeacherGUI implements ActionListener{
                             //Checking if the teacher ID is of lecturer or tutor
                             if(teacher instanceof Tutor){
                                 check = true;
-                                break;
                             }
                         }
                     }
@@ -759,7 +791,87 @@ public class TeacherGUI implements ActionListener{
         }
     }
         else if(e.getSource() == t_salary){
-            
+            //Checking if arraylist is empty or not
+            if(teacherList.isEmpty()){
+                JOptionPane.showMessageDialog(TeacherGUI,"No data to set salary","Alert",JOptionPane.WARNING_MESSAGE);
+            }else{
+                for(Teacher teacher : teacherList){
+                    if(teacher instanceof Tutor){
+                        // Downcasting
+                        Tutor tutor = (Tutor) teacher;
+
+                        //Checking if the user the needed data
+                        String id = t_forteacherID.getText();
+                        String name = t_forteacherName.getText();
+                        String perf = t_forperformanceIndex.getText();
+                        String workHour = t_forWorkingHour.getText();
+
+                        //Checking if the user entered the data or not
+                        if(id.isEmpty() || name.isEmpty() || perf.isEmpty() || workHour.isEmpty()){
+                            JOptionPane.showMessageDialog(TeacherGUI,"Please enter the required  data set salary \n Required Data are: \n Teacher ID \n Teacher Name \n Working Hour \n Performance Indez ","Alert",JOptionPane.WARNING_MESSAGE);
+                            }
+                        else{
+                            try{
+                                int sal = Integer.parseInt(t_forteacherID.getText());
+                                if (sal == teacher.getTeacherID() || name.equals(teacher.getTeacherName())){
+                                    String salary = JOptionPane.showInputDialog("Set Salary");
+                                    try {
+                                        //Checking if the user entered the correct data type of salary
+                                        double salar = Double.parseDouble(salary);
+                                        int per = Integer.parseInt(perf);
+                                        if (salar > 0) {
+                                            JOptionPane.showMessageDialog(TeacherGUI, "Salary Setted Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                                            //Changing the salary of the tutor
+                                            tutor.setSalary(salar, per);//Method calling to set the salary of tutor
+
+                                            //clearing the textfield after the salary is changed succcessfully
+                                            t_forteacherID.setText("");
+                                            t_forteacherName.setText("");
+                                            t_forperformanceIndex.setText("");
+                                            t_forWorkingHour.setText("");
+                                        } else {
+                                         JOptionPane.showMessageDialog(TeacherGUI, "Please enter the valid grade", "Alert", JOptionPane.WARNING_MESSAGE);
+                                        }
+                                    } catch (NumberFormatException b) {
+                                        JOptionPane.showMessageDialog(TeacherGUI, " Please enter valid grade", "Alert", JOptionPane.WARNING_MESSAGE);
+                                    }
+                                }
+                            }catch(NumberFormatException a){
+                                JOptionPane.showMessageDialog(TeacherGUI,"Please enter valid data to set Salary","Alert",JOptionPane.WARNING_MESSAGE);
+                            }
+                        }
+                    }
+                }
+            }  
+        }
+        else if(e.getSource() == t_RemoveTutor){
+            if(teacherList.isEmpty()){
+                JOptionPane.showMessageDialog(TeacherGUI,"No data to remove","Alert",JOptionPane.WARNING_MESSAGE);
+            }else{
+                for(Teacher teacher : teacherList){
+                    if(teacher instanceof Tutor){
+                        //Checking if the user entered the correct teacher ID
+                        try{
+                            int gra = Integer.parseInt(t_forteacherID.getText());
+                            String teacherName = t_forteacherName.getText();
+                            if(t_forteacherID.getText().isEmpty() || t_forteacherName.getText().isEmpty()){
+                                JOptionPane.showMessageDialog(TeacherGUI,"Please enter valid teacher ID and teacher name to remove Tutor","Alert",JOptionPane.WARNING_MESSAGE);
+                            }
+                            else if (gra == teacher.getTeacherID() || teacherName.equals(teacher.getTeacherName())){
+                                teacherList.remove(teacher);
+                                JOptionPane.showMessageDialog(TeacherGUI,"Tutor Removed Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
+                                //clearing the textfield after the data is removed
+                                t_forteacherID.setText("");
+                                t_forteacherName.setText("");
+                            }
+                        
+                            }catch(NumberFormatException a){
+                                JOptionPane.showMessageDialog(TeacherGUI,"Please enter valid teacher ID and teacher name to remove Tutor","Alert",JOptionPane.WARNING_MESSAGE);
+                        }
+                    }
+                }
+            }
         }
         else if(e.getSource() == t_Display){
             
