@@ -26,7 +26,8 @@ public class TeacherGUI implements ActionListener{
     private JButton t_Add,t_salary,t_Display,t_Clear,t_Previous,t_Back,t_RemoveTutor;//for tutor
     private int teacher_ID,working_Hours,performanceIndex;
     private double check_salary;
-    
+    //Creating the pattern for the word
+   private  String wordPattern = "^[a-zA-Z]+$";
     
     //Creating constructor  
     public TeacherGUI(){
@@ -539,7 +540,7 @@ public class TeacherGUI implements ActionListener{
         
         if(e.getSource() == Add){
             //Checking if the user added the correct Teacher ID
-            
+                
                 //Declarin the variables to store the data
                 String teacherID = forteacherID.getText();
                 String teacherName = forteacherName.getText();
@@ -554,53 +555,24 @@ public class TeacherGUI implements ActionListener{
                     JOptionPane.showMessageDialog(TeacherGUI,"Please Fill all the asked information","Alert",JOptionPane.WARNING_MESSAGE);  
                 }
                 else{
-                    try{
-                        lteacher_ID =Integer.parseInt(forteacherID.getText());
-                        lworking_Hours = Integer.parseInt(forWorkingHour.getText());
-                        lyearsOfExperience = Integer.parseInt(foryearsOfExperience.getText());
-                        
-                     
-                        //Checking if arraylist is empty or not
-                        if(teacherList.isEmpty()){
-                            //Adding the data to the ArrayList
-                            Lecturer lecturer_list= new Lecturer(lteacher_ID, teacherName, address, workingType, employmentStatus, lworking_Hours, Department, lyearsOfExperience);
-                            teacherList.add(lecturer_list);
-
-                            //Showing the message if that the data is added successfully
-                            JOptionPane.showMessageDialog(TeacherGUI,"Data Added Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
-
-                            //Setting the textfield to empty after the data is added  
-                            forteacherID.setText("");
-                            forteacherName.setText("");
-                            fordepartment.setText("");
-                            foryearsOfExperience.setText("");
-                            foraddress.setText("");
-                            forWorkingType.setText("");
-                            forWorkingHour.setText("");
-                            foremploymentstatus.setText("");
-                        }else{
-                            //Checking if the teacher ID is already added or not
-                            boolean check = false;
-                            for(Teacher teacher : teacherList){
-                                if(teacher.getTeacherID() == lteacher_ID){
-                                    //Checking if the teacher ID is of lecturer 
-                                    if(teacher instanceof Lecturer){
-                                        check = true;
-                                        break;
-                                    }
-                                }
-                            }
-                            //If the teacher ID is already added then it will show the message
-                            if(check){
-                                JOptionPane.showMessageDialog(TeacherGUI,"The Teacher ID is already added","Alert",JOptionPane.WARNING_MESSAGE);
-                            }else{
+                    //Checking if the user added the correct data
+                    if (teacherName.matches(wordPattern) && address.matches(wordPattern) && Department.matches(wordPattern) && workingType.matches(wordPattern) && employmentStatus.matches(wordPattern)){
+                        // Checking if the user added correct pattern
+                        try{
+                            lteacher_ID =Integer.parseInt(forteacherID.getText());
+                            lworking_Hours = Integer.parseInt(forWorkingHour.getText());
+                            lyearsOfExperience = Integer.parseInt(foryearsOfExperience.getText());
+                            
+                         
+                            //Checking if arraylist is empty or not
+                            if(teacherList.isEmpty()){
                                 //Adding the data to the ArrayList
                                 Lecturer lecturer_list= new Lecturer(lteacher_ID, teacherName, address, workingType, employmentStatus, lworking_Hours, Department, lyearsOfExperience);
                                 teacherList.add(lecturer_list);
-
+    
                                 //Showing the message if that the data is added successfully
                                 JOptionPane.showMessageDialog(TeacherGUI,"Data Added Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
-                                
+    
                                 //Setting the textfield to empty after the data is added  
                                 forteacherID.setText("");
                                 forteacherName.setText("");
@@ -610,12 +582,46 @@ public class TeacherGUI implements ActionListener{
                                 forWorkingType.setText("");
                                 forWorkingHour.setText("");
                                 foremploymentstatus.setText("");
+                            }else{
+                                //Checking if the teacher ID is already added or not
+                                boolean check = false;
+                                for(Teacher teacher : teacherList){
+                                    if(teacher.getTeacherID() == lteacher_ID){
+                                        //Checking if the teacher ID is of lecturer 
+                                        if(teacher instanceof Lecturer){
+                                            check = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                //If the teacher ID is already added then it will show the message
+                                if(check){
+                                    JOptionPane.showMessageDialog(TeacherGUI,"The Teacher ID is already added","Alert",JOptionPane.WARNING_MESSAGE);
+                                }else{
+                                    //Adding the data to the ArrayList
+                                    Lecturer lecturer_list= new Lecturer(lteacher_ID, teacherName, address, workingType, employmentStatus, lworking_Hours, Department, lyearsOfExperience);
+                                    teacherList.add(lecturer_list);
+    
+                                    //Showing the message if that the data is added successfully
+                                    JOptionPane.showMessageDialog(TeacherGUI,"Data Added Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
+                                    
+                                    //Setting the textfield to empty after the data is added  
+                                    forteacherID.setText("");
+                                    forteacherName.setText("");
+                                    fordepartment.setText("");
+                                    foryearsOfExperience.setText("");
+                                    foraddress.setText("");
+                                    forWorkingType.setText("");
+                                    forWorkingHour.setText("");
+                                    foremploymentstatus.setText("");
+                                }
                             }
-                        }
-                    }catch (NumberFormatException a) {
+                        }catch (NumberFormatException a) {
+                            JOptionPane.showMessageDialog(TeacherGUI,"Please Enter the Valid Data","Alert",JOptionPane.WARNING_MESSAGE);
+                    }
+                    }else{
                         JOptionPane.showMessageDialog(TeacherGUI,"Please Enter the Valid Data","Alert",JOptionPane.WARNING_MESSAGE);
-                }
-            
+                    }
             }  
         }
         //Checking if the user wants to grade the assignment
@@ -759,48 +765,19 @@ public class TeacherGUI implements ActionListener{
                 JOptionPane.showMessageDialog(TeacherGUI,"Please fill all the asked information","Alert",JOptionPane.WARNING_MESSAGE);  
             }
             else{
-                //Checking if the user added the correct data
-                try{
-                    teacher_ID = Integer.parseInt(t_forteacherID.getText());
-                    working_Hours = Integer.parseInt(t_forWorkingHour.getText());
-                    performanceIndex = Integer.parseInt(t_forperformanceIndex.getText());
-                    check_salary = Double.parseDouble(t_forsetSalary.getText());
-                //Checking if arraylist is empty or not
-                if(teacherList.isEmpty()){
+                if(teacherName.matches(wordPattern) && address.matches(wordPattern) && workingType.matches(wordPattern) && employmentStatus.matches(wordPattern) && specialization.matches(wordPattern) && academicQualifications.matches(wordPattern)){
+                    //Checking if the user added the correct data
+                    try{
+                        teacher_ID = Integer.parseInt(t_forteacherID.getText());
+                        working_Hours = Integer.parseInt(t_forWorkingHour.getText());
+                        performanceIndex = Integer.parseInt(t_forperformanceIndex.getText());
+                        check_salary = Double.parseDouble(t_forsetSalary.getText());
+                    //Checking if arraylist is empty or not
+                    if(teacherList.isEmpty()){
 
-                    //Adding the data to the ArrayList
-                    Tutor tutor_list = new Tutor(teacher_ID, teacherName, address, workingType, employmentStatus, working_Hours, check_salary, specialization, academicQualifications, performanceIndex);
-                    teacherList.add(tutor_list);  
-
-                    //Setting the textfield to empty after the data is added
-                    t_forteacherID.setText("");
-                    t_forteacherName.setText("");
-                    t_foraddress.setText("");
-                    t_forWorkingHour.setText("");
-                    t_forWorkingType.setText("");
-                    t_foremploymentstatus.setText("");
-                    t_forspecialization.setText("");
-                    t_forsetSalary.setText("");
-                    t_foracademicQualifications.setText("");
-                    t_forperformanceIndex.setText("");
-                }else{
-                    //Checking if the teacher ID is already added or not
-                    boolean check = false;
-                    for(Teacher teacher : teacherList){
-                        if(teacher.getTeacherID() == teacher_ID){
-                            //Checking if the teacher ID is of lecturer or tutor
-                            if(teacher instanceof Tutor){
-                                check = true;
-                            }
-                        }
-                    }
-                    //If the teacher ID is already added then it will show the message
-                    if(check){
-                        JOptionPane.showMessageDialog(TeacherGUI,"Teacher ID is already added","Alert",JOptionPane.WARNING_MESSAGE);
-                    }else{
                         //Adding the data to the ArrayList
                         Tutor tutor_list = new Tutor(teacher_ID, teacherName, address, workingType, employmentStatus, working_Hours, check_salary, specialization, academicQualifications, performanceIndex);
-                        teacherList.add(tutor_list);
+                        teacherList.add(tutor_list);  
 
                         //Showing the message if the data is added successfully
                         JOptionPane.showMessageDialog(TeacherGUI,"Data Added Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
@@ -816,10 +793,46 @@ public class TeacherGUI implements ActionListener{
                         t_forsetSalary.setText("");
                         t_foracademicQualifications.setText("");
                         t_forperformanceIndex.setText("");
+                    }else{
+                        //Checking if the teacher ID is already added or not
+                        boolean check = false;
+                        for(Teacher teacher : teacherList){
+                            if(teacher.getTeacherID() == teacher_ID){
+                                //Checking if the teacher ID is of lecturer or tutor
+                                if(teacher instanceof Tutor){
+                                    check = true;
+                                }
+                            }
                         }
+                        //If the teacher ID is already added then it will show the message
+                        if(check){
+                            JOptionPane.showMessageDialog(TeacherGUI,"Teacher ID is already added","Alert",JOptionPane.WARNING_MESSAGE);
+                        }else{
+                            //Adding the data to the ArrayList
+                            Tutor tutor_list = new Tutor(teacher_ID, teacherName, address, workingType, employmentStatus, working_Hours, check_salary, specialization, academicQualifications, performanceIndex);
+                            teacherList.add(tutor_list);
+
+                            //Showing the message if the data is added successfully
+                            JOptionPane.showMessageDialog(TeacherGUI,"Data Added Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
+
+                            //Setting the textfield to empty after the data is added
+                            t_forteacherID.setText("");
+                            t_forteacherName.setText("");
+                            t_foraddress.setText("");
+                            t_forWorkingHour.setText("");
+                            t_forWorkingType.setText("");
+                            t_foremploymentstatus.setText("");
+                            t_forspecialization.setText("");
+                            t_forsetSalary.setText("");
+                            t_foracademicQualifications.setText("");
+                            t_forperformanceIndex.setText("");
+                            }
+                        }
+                    }catch (NumberFormatException a) {
+                    JOptionPane.showMessageDialog(TeacherGUI,"Please enter valid data","Alert",JOptionPane.WARNING_MESSAGE);
                     }
-                }catch (NumberFormatException a) {
-                JOptionPane.showMessageDialog(TeacherGUI,"Please enter valid data","Alert",JOptionPane.WARNING_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(TeacherGUI,"Please enter valid data","Alert",JOptionPane.WARNING_MESSAGE);
                 }
         }
     }
