@@ -522,6 +522,7 @@ public class TeacherGUI implements ActionListener{
     //Adding different EventHandeling functions in the buttons
     @Override
     public void actionPerformed(ActionEvent e){
+        
         if(e.getSource() == Quit){//checking if the user clicked the quit button in main panel
             TeacherGUI.dispose();
         }
@@ -533,8 +534,9 @@ public class TeacherGUI implements ActionListener{
             select.setVisible(false);//It removes the main panel
             t_panel.setVisible(true);//It shows the Tutor panel
         }
-        
         //Checking if the user click any buttons in Lecturer Panel
+        //Checking if the user wants to add the lecturer
+        
         if(e.getSource() == Add){
             //Checking if the user added the correct Teacher ID
             
@@ -616,6 +618,7 @@ public class TeacherGUI implements ActionListener{
             
             }  
         }
+        //Checking if the user wants to grade the assignment
         else if(e.getSource() == GradeAssignment){
             if (teacherList.isEmpty()){
                 JOptionPane.showMessageDialog(TeacherGUI,"No data to grade","Alert",JOptionPane.WARNING_MESSAGE);
@@ -668,6 +671,7 @@ public class TeacherGUI implements ActionListener{
                 }
             }
         }
+        //Checking if the user wants to display the data
         else if(e.getSource() == Display){
             //Showing the Lecturer data
             //Checking id the arraylist is empty or not
@@ -713,7 +717,7 @@ public class TeacherGUI implements ActionListener{
                 }
         }
     }
-        
+        //Checking if the user wants to clear the textfield   
         else if(e.getSource() == Clear){
             forteacherID.setText("");
             forteacherName.setText("");
@@ -724,16 +728,20 @@ public class TeacherGUI implements ActionListener{
             forWorkingHour.setText("");
             foremploymentstatus.setText("");
         }
+        //Checking if the user wants to go back to the main panel
         else if(e.getSource() == Previous){
             p_Lecturer.setVisible(false);
             select.setVisible(true);
         }
+        //Checking if the user wants to quit the program
         else if(e.getSource() == Back){
             TeacherGUI.dispose();
         }
         
         
         //Checking if the user click any buttons in Tutor Panel
+        //Checking if the user wants to add the tutor
+        else
         if(e.getSource() == t_Add){
             //Declarin the variables to store the data
             String teacherID = t_forteacherID.getText();
@@ -815,6 +823,7 @@ public class TeacherGUI implements ActionListener{
                 }
         }
     }
+    //Checking if the user wants to set the salary of the tutor
         else if(e.getSource() == t_salary){
             //Checking if arraylist is empty or not
             if(teacherList.isEmpty()){
@@ -869,6 +878,7 @@ public class TeacherGUI implements ActionListener{
                     }
                 }
             }  
+        //Checking if the user wants to remove the tutor
         }else if (e.getSource() == t_RemoveTutor) {
             if (teacherList.isEmpty()) {
                 JOptionPane.showMessageDialog(TeacherGUI, "No data to remove", "Alert", JOptionPane.WARNING_MESSAGE);
@@ -895,7 +905,7 @@ public class TeacherGUI implements ActionListener{
             }
         }
         
-        
+        //Checking if the user wants to display the tutor data
         else if(e.getSource() == t_Display){
             //Showing the tutor data
             if(teacherList.isEmpty()){
