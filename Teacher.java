@@ -35,7 +35,7 @@ public class Teacher
         return this.workingType;
     }
     
-    public String getEmoloymentStatus()
+    public String getEmploymentStatus()
     {
         return this.employmentStatus;
     }

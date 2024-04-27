@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class TeacherGUI implements ActionListener{
     private ArrayList<Teacher> teacherList;
@@ -660,7 +661,6 @@ public class TeacherGUI implements ActionListener{
                                     JOptionPane.showMessageDialog(TeacherGUI," Please enter valid grade", "Alert", JOptionPane.WARNING_MESSAGE);
                                 }
                             }
-                        
                             }catch(NumberFormatException a){
                                 JOptionPane.showMessageDialog(TeacherGUI,"Please enter valid data\n Required Data:\n Teacher ID \n Department \n Year of Experience","Alert",JOptionPane.WARNING_MESSAGE);
                         }
@@ -669,26 +669,51 @@ public class TeacherGUI implements ActionListener{
             }
         }
         else if(e.getSource() == Display){
-            //Displaying the lecturer data
+            //Showing the Lecturer data
+            //Checking id the arraylist is empty or not
             if(teacherList.isEmpty()){
                 JOptionPane.showMessageDialog(TeacherGUI,"No data to display","Alert",JOptionPane.WARNING_MESSAGE);
             }
             else {
                 for (Teacher teacher : teacherList) {
                     if (teacher instanceof Lecturer) {
-                        // display = new JFrame();
-                        // display.setTitle("Display Lecturer");
-                        // display.setSize(500, 500);
-                        // display.setLayout(null);
-                        // display.setVisible(true);
-                        // JLabel displayData = new JLabel("Teacher ID: " + teacher.getTeacherID() + "\nTeacher Name: " + teacher.getTeacherName() + "\nAddress: " + teacher.getAddress() + "\nWorking Type: " + teacher.getWorkingType() + "\nEmployment Status: ");// + teacher.getEmploymentStatus() + "\nWorking Hour: " + ((Lecturer) teacher).getWorkingHour() + "\nDepartment: " + ((Lecturer) teacher).getDepartment() + "\nYears of Experience: " + ((Lecturer) teacher).getYearsOfExperience());
-                        // displayData.setBounds(50, 50, 400, 400);
-                        // display.add(displayData);
+                        //Taking teacher ID as Input using JOptionPane
+                        try{
+                            int teacherID = Integer.parseInt(JOptionPane.showInputDialog("Enter Teacher ID"));
+                            //Checking if the teacher ID is available in the ArrayList
+                            if(teacherID == teacher.getTeacherID()){
+                                //Downcasting
+                                Lecturer lecturer = (Lecturer) teacher;
+
+                                //Creating a StringBuilder object to store the message to display in the JOptionPane
+                                StringBuilder displayMessage = new StringBuilder();
+
+                                // Construct a string containing the tutor's information
+                                displayMessage.append("Teacher ID: ").append(lecturer.getTeacherID()).append("\n");
+                                displayMessage.append("Name: ").append(lecturer.getTeacherName()).append("\n");
+                                displayMessage.append("Address: ").append(lecturer.getAddress()).append("\n");
+                                displayMessage.append("department").append(lecturer.getDepartment()).append("\n");
+                                displayMessage.append("Years of Experience: ").append(lecturer.getYearsOfExperience()).append("\n");
+                                displayMessage.append("Working Type: ").append(lecturer.getWorkingType()).append("\n");
+                                displayMessage.append("Working Hours: ").append(lecturer.getWorkingHours()).append("\n");
+                                displayMessage.append("Employment Status: ").append(lecturer.getEmploymentStatus()).append("\n");
+                                displayMessage.append("Graded Score: ").append(lecturer.getGradedScore()).append("\n");
+                                displayMessage.append("\n"); // Add a separator between each tutor's information
+
+                                // Display the message in a JOptionPane
+                                JOptionPane.showMessageDialog(TeacherGUI, displayMessage.toString(), "Tutor Information", JOptionPane.INFORMATION_MESSAGE);
+                            }else{
+                                JOptionPane.showMessageDialog(TeacherGUI,"Teacher ID is not available","Alert",JOptionPane.WARNING_MESSAGE);
+                            }
+                        }catch(NumberFormatException a){
+                            JOptionPane.showMessageDialog(TeacherGUI,"Please enter valid Teacher ID","Alert",JOptionPane.WARNING_MESSAGE);
+                        }
+                        
                     }
                 }
-            }
-            
         }
+    }
+        
         else if(e.getSource() == Clear){
             forteacherID.setText("");
             forteacherName.setText("");
@@ -813,7 +838,7 @@ public class TeacherGUI implements ActionListener{
                         else{
                             try{
                                 int sal = Integer.parseInt(t_forteacherID.getText());
-                                if (sal == teacher.getTeacherID() || name.equals(teacher.getTeacherName())){
+                                if (sal == teacher.getTeacherID()){
                                     String salary = JOptionPane.showInputDialog("Set Salary");
                                     try {
                                         //Checking if the user entered the correct data type of salary
@@ -831,10 +856,10 @@ public class TeacherGUI implements ActionListener{
                                             t_forperformanceIndex.setText("");
                                             t_forWorkingHour.setText("");
                                         } else {
-                                         JOptionPane.showMessageDialog(TeacherGUI, "Please enter the valid grade", "Alert", JOptionPane.WARNING_MESSAGE);
+                                         JOptionPane.showMessageDialog(TeacherGUI, "Please enter the valid salary", "Alert", JOptionPane.WARNING_MESSAGE);
                                         }
                                     } catch (NumberFormatException b) {
-                                        JOptionPane.showMessageDialog(TeacherGUI, " Please enter valid grade", "Alert", JOptionPane.WARNING_MESSAGE);
+                                        JOptionPane.showMessageDialog(TeacherGUI, " Please enter valid data", "Alert", JOptionPane.WARNING_MESSAGE);
                                     }
                                 }
                             }catch(NumberFormatException a){
@@ -844,36 +869,74 @@ public class TeacherGUI implements ActionListener{
                     }
                 }
             }  
-        }
-        else if(e.getSource() == t_RemoveTutor){
-            if(teacherList.isEmpty()){
-                JOptionPane.showMessageDialog(TeacherGUI,"No data to remove","Alert",JOptionPane.WARNING_MESSAGE);
-            }else{
-                for(Teacher teacher : teacherList){
-                    if(teacher instanceof Tutor){
-                        //Checking if the user entered the correct teacher ID
-                        try{
-                            int gra = Integer.parseInt(t_forteacherID.getText());
-                            String teacherName = t_forteacherName.getText();
-                            if(t_forteacherID.getText().isEmpty() || t_forteacherName.getText().isEmpty()){
-                                JOptionPane.showMessageDialog(TeacherGUI,"Please enter valid teacher ID and teacher name to remove Tutor","Alert",JOptionPane.WARNING_MESSAGE);
+        }else if (e.getSource() == t_RemoveTutor) {
+            if (teacherList.isEmpty()) {
+                JOptionPane.showMessageDialog(TeacherGUI, "No data to remove", "Alert", JOptionPane.WARNING_MESSAGE);
+            } else {
+                // Create an iterator to iterate through the teacherList
+                Iterator<Teacher> i = teacherList.iterator();
+                while (i.hasNext()) {
+                    Teacher teacher = i.next();
+                    if (teacher instanceof Tutor) {
+                        // Checking if the user entered the correct teacher ID
+                        try {
+                            int teac = Integer.parseInt(JOptionPane.showInputDialog("Enter Teacher ID"));
+                            if (teac == teacher.getTeacherID()) {
+                                i.remove(); // Remove the element using the iterator
+                                JOptionPane.showMessageDialog(TeacherGUI, "Tutor Removed Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                            } else { 
+                                JOptionPane.showMessageDialog(TeacherGUI, "Teacher ID is not available", "Alert", JOptionPane.WARNING_MESSAGE);
                             }
-                            else if (gra == teacher.getTeacherID() || teacherName.equals(teacher.getTeacherName())){
-                                teacherList.remove(teacher);
-                                JOptionPane.showMessageDialog(TeacherGUI,"Tutor Removed Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
-                                //clearing the textfield after the data is removed
-                                t_forteacherID.setText("");
-                                t_forteacherName.setText("");
-                            }
-                        
-                            }catch(NumberFormatException a){
-                                JOptionPane.showMessageDialog(TeacherGUI,"Please enter valid teacher ID and teacher name to remove Tutor","Alert",JOptionPane.WARNING_MESSAGE);
+                        } catch (NumberFormatException a) {
+                            JOptionPane.showMessageDialog(TeacherGUI, "Please enter valid teacher ID and teacher name to remove Tutor", "Alert", JOptionPane.WARNING_MESSAGE);
                         }
                     }
                 }
             }
         }
+        
+        
         else if(e.getSource() == t_Display){
+            //Showing the tutor data
+            if(teacherList.isEmpty()){
+                JOptionPane.showMessageDialog(TeacherGUI,"No data to display","Alert",JOptionPane.WARNING_MESSAGE);
+            }
+            else {
+                for (Teacher teacher : teacherList) {
+                    if (teacher instanceof Tutor) {
+                        //Taking teacher ID as Input using JOptionPane
+                        try{
+                            int teacherID = Integer.parseInt(JOptionPane.showInputDialog("Enter Teacher ID"));
+                            //Checking if the teacher ID is available in the ArrayList
+                            if(teacherID == teacher.getTeacherID()){
+                                //Downcasting
+                                Tutor tutor = (Tutor) teacher;
+                                //Creating a StringBuilder object to store the message to display in the JOptionPane
+                                StringBuilder displayMessage = new StringBuilder();
+                                // Construct a string containing the tutor's information
+                                displayMessage.append("Teacher ID: ").append(tutor.getTeacherID()).append("\n");
+                                displayMessage.append("Name: ").append(tutor.getTeacherName()).append("\n");
+                                displayMessage.append("Address: ").append(tutor.getAddress()).append("\n");
+                                displayMessage.append("Working Type: ").append(tutor.getWorkingType()).append("\n");
+                                displayMessage.append("Working Hour: ").append(tutor.getWorkingHours()).append("\n");
+                                displayMessage.append("Employment Status: ").append(tutor.getEmploymentStatus()).append("\n");
+                                displayMessage.append("Specialization: ").append(tutor.getSpecialization()).append("\n");
+                                displayMessage.append("Academic Qualifications: ").append(tutor.getAcademicQualifications()).append("\n");
+                                displayMessage.append("Performance Index: ").append(tutor.getPerformanceIndex()).append("\n");
+                                displayMessage.append("Salary: ").append(tutor.getSalary()).append("\n");
+                                displayMessage.append("\n"); // Add a separator between each tutor's information
+                                // Display the message in a JOptionPane
+                                JOptionPane.showMessageDialog(TeacherGUI, displayMessage.toString(), "Tutor Information", JOptionPane.INFORMATION_MESSAGE);
+                            }else{
+                                JOptionPane.showMessageDialog(TeacherGUI,"Teacher ID is not available","Alert",JOptionPane.WARNING_MESSAGE);
+                            }
+                        }catch(NumberFormatException a){
+                            JOptionPane.showMessageDialog(TeacherGUI,"Please enter valid Teacher ID","Alert",JOptionPane.WARNING_MESSAGE);
+                        }
+                        
+                    }
+                }
+            }
             
         }
         else if(e.getSource() == t_Clear){
