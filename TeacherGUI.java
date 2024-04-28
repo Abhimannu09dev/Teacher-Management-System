@@ -234,7 +234,6 @@ public class TeacherGUI implements ActionListener{
         WorkingType.setFont(label);
         WorkingHour.setFont(label);
         employmentstatus.setFont(label);
-        // gradedScore.setFont(label);
         address.setFont(label);
         yearsOfExperience.setFont(label);
         forteacherID.setFont(label);
@@ -243,7 +242,6 @@ public class TeacherGUI implements ActionListener{
         forWorkingType.setFont(label);
         forWorkingHour.setFont(label);
         foremploymentstatus.setFont(label);
-        // forgradedScore.setFont(label);
         foraddress.setFont(label);
         foryearsOfExperience.setFont(label);
         Add.setFont(label);
@@ -262,15 +260,13 @@ public class TeacherGUI implements ActionListener{
         p_Lecturer.add(WorkingType);
         p_Lecturer.add(WorkingHour);
         p_Lecturer.add(employmentstatus);
-        // p_Lecturer.add(gradedScore);
         p_Lecturer.add(forteacherID);
         p_Lecturer.add(forteacherName);
         p_Lecturer.add(foraddress);
         p_Lecturer.add(fordepartment);
         p_Lecturer.add(foryearsOfExperience);
         p_Lecturer.add(forWorkingType);
-        p_Lecturer.add(forWorkingHour);
-        // p_Lecturer.add(forgradedScore);
+        p_Lecturer.add(forWorkingHour); 
         p_Lecturer.add(foremploymentstatus);
         p_Lecturer.add(Add);
         p_Lecturer.add(GradeAssignment);
