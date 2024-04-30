@@ -306,7 +306,7 @@ public class TeacherGUI implements ActionListener{
 
         //Creacting JLabel for Tutor
         t_address = new JLabel("Address:");
-        t_address.setBounds(475,91,163,50);
+        t_address.setBounds(435,91,163,50);
 
         //Creacting JLabel for Tutor
         t_WorkingType = new JLabel("Working Type:");
@@ -314,7 +314,7 @@ public class TeacherGUI implements ActionListener{
         
         //Creacting JLabel for Tutor
         t_WorkingHour = new JLabel("Working Hour:");
-        t_WorkingHour.setBounds(475,157,214,50);
+        t_WorkingHour.setBounds(435,157,214,50);
         
         //Creacting JLabel for Tutor
         t_employmentstatus = new JLabel("Employment Status:");
@@ -326,11 +326,11 @@ public class TeacherGUI implements ActionListener{
 
         //Creating JLabel for Tutor
         t_specialization = new JLabel("Specialization:");
-        t_specialization.setBounds(475,221,214,50);
+        t_specialization.setBounds(435,221,214,50);
         
         //Creating JLabel for Tutor
         t_academicQualifications = new JLabel("Academic Qualifications:");
-        t_academicQualifications.setBounds(475,278,230,50);
+        t_academicQualifications.setBounds(435,278,230,50);
 
         //Creating JLabel for Tutor
         t_performanceIndex = new JLabel("Performance Index:");
@@ -347,7 +347,7 @@ public class TeacherGUI implements ActionListener{
         
         //Creating JTextField for Tutor
         t_foraddress = new JTextField();
-        t_foraddress.setBounds(550,105,182,25);
+        t_foraddress.setBounds(525,105,182,25);
         
         //Creating JTextField for Tutor
         t_forWorkingType = new JTextField();
@@ -355,7 +355,7 @@ public class TeacherGUI implements ActionListener{
         
         //Creating JTextField for Tutor
         t_forWorkingHour = new JTextField();
-        t_forWorkingHour.setBounds(635,173,182,25);
+        t_forWorkingHour.setBounds(575,173,182,25);
         
         //Creating JTextField for Tutor
         t_foremploymentstatus = new JTextField();
@@ -363,7 +363,7 @@ public class TeacherGUI implements ActionListener{
 
         //Creating JTextField for Tutor
         t_forspecialization = new JTextField();
-        t_forspecialization.setBounds(610,230,182,25);
+        t_forspecialization.setBounds(575,230,182,25);
         
         //Creating JTextField for Tutor
         t_forsetSalary = new JTextField();
@@ -371,7 +371,7 @@ public class TeacherGUI implements ActionListener{
 
         //Creating JTextField for Tutor
         t_foracademicQualifications = new JTextField();
-        t_foracademicQualifications.setBounds(705,290,87,25);
+        t_foracademicQualifications.setBounds(655,290,150,25);
 
         //Creating JTextField for Tutor
         t_forperformanceIndex = new JTextField();
