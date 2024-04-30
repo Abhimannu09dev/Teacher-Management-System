@@ -53,23 +53,23 @@ public class Lecturer extends Teacher
         {
             if(gradedScore>=70)
                 {
-                    System.out.println("The garde of the Student is A");
+                    System.out.println("The grade of the Student is A");
                 }
             else if (gradedScore>=60)
                 {
-                    System.out.println("The garde of the Student is B");
+                    System.out.println("The grade of the Student is B");
                 }
             else if (gradedScore>=50)
                 {
-                    System.out.println("The garde of the Student is C");
+                    System.out.println("The grade of the Student is C");
                 }   
             else if (gradedScore>=40)
                 {
-                    System.out.println("The garde of the Student is D");
+                    System.out.println("The grade of the Student is D");
                 }
             else 
                 {
-                    System.out.println("The garde of the Student is E");
+                    System.out.println("The grade of the Student is E");
                 }
             hasGraded=true;
         }

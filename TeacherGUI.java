@@ -27,7 +27,7 @@ public class TeacherGUI implements ActionListener{
     private int teacher_ID,working_Hours,performanceIndex;
     private double check_salary;
     //Creating the pattern for the word
-   private  String wordPattern = "^[a-zA-Z]+$";
+   private  String wordPattern = "^[a-zA-Z\\s]+$";
     
     //Creating constructor  
     public TeacherGUI(){
