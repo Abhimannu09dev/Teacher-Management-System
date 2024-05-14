@@ -6,5 +6,8 @@ Welcome to my coursework for Programming in second semester. In this project we 
 It is a jist for the Teacher Management System of colleges
 
 ## Technologies used
+1.VS code
+
+## Languages used
 1.Java
 
