@@ -955,8 +955,7 @@ public class TeacherGUI implements ActionListener{
                         
                     }
                 }
-            }
-            
+            }    
         }
         else if(e.getSource() == t_Clear){
             //Setting the textfield to empty 
